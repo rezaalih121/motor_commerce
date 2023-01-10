@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MotosPanier{% endblock %}
+
+{% block body %}
+    <h1>Create new MotosPanier</h1>
+
+    {{ include('motos_panier/_form.html.twig') }}
+
+    <a href="{{ path('app_motos_panier_index') }}">back to list</a>
+{% endblock %}

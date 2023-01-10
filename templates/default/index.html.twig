@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefautController!{% endblock %}
+
+{% block body %}
+
+<div id="recapPanier"></div>
+
+{% for moto in motos %}
+    <h1>details moto : {{moto.title}}</h1>
+
+
+        <input type="number" name="quantite" id="quantite" value="1">
+        {% if app.user %}
+        <button type="button" onclick="addPanier({{moto.id}})">Acheter</button>
+        {% else %}
+        <a href="{{path('app_login')}}"><button type="button">Acheter</button></a>
+        {% endif %}
+    {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+{% endfor %}
+<script>
+recapPanierHeader();
+
+function addPanier(id)
+{
+   let quantite = $('#quantite').val()
+   
+   $.ajax({
+    url:"{{path('app_ajaxAddPanier')}}",
+    type:"post",
+    data:{'id':id,'quantite':quantite},
+
+    success:function(html)
+    {
+        recapPanierHeader()
+        alert(html)
+    }
+   })
+}
+
+function recapPanierHeader()
+{
+    $.ajax({
+    url:"{{path('app_ajaxRecapPanierHeader')}}",
+    type:"post",
+    data:{},
+
+    success:function(html)
+    {
+        $('#recapPanier').html(html);
+
+    }
+   })
+}
+</script>
+
+{% endblock %}

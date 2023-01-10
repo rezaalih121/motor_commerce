@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MotosPanier{% endblock %}
+
+{% block body %}
+    <h1>MotosPanier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ motos_panier.id }}</td>
+            </tr>
+            <tr>
+                <th>Quntity</th>
+                <td>{{ motos_panier.quntity }}</td>
+            </tr>
+            <tr>
+                <th>Total_price</th>
+                <td>{{ motos_panier.totalPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_motos_panier_index') }}">back to list</a>
+
+    <a href="{{ path('app_motos_panier_edit', {'id': motos_panier.id}) }}">edit</a>
+
+    {{ include('motos_panier/_delete_form.html.twig') }}
+{% endblock %}

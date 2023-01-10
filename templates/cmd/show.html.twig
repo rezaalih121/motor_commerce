@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cmd{% endblock %}
+
+{% block body %}
+    <h1>Cmd</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cmd.id }}</td>
+            </tr>
+            <tr>
+                <th>C_date</th>
+                <td>{{ cmd.cDate ? cmd.cDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>C_totalPrice</th>
+                <td>{{ cmd.cTotalPrice }}</td>
+            </tr>
+            <tr>
+                <th>Payee</th>
+                <td>{{ cmd.payee ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Retrait</th>
+                <td>{{ cmd.retrait ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cmd_index') }}">back to list</a>
+
+    <a href="{{ path('app_cmd_edit', {'id': cmd.id}) }}">edit</a>
+
+    {{ include('cmd/_delete_form.html.twig') }}
+{% endblock %}

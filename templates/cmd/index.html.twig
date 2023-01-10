@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cmd index{% endblock %}
+
+{% block body %}
+    <h1>Cmd index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>C_date</th>
+                <th>C_totalPrice</th>
+                <th>Payee</th>
+                <th>Retrait</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cmd in cmds %}
+            <tr>
+                <td>{{ cmd.id }}</td>
+                <td>{{ cmd.cDate ? cmd.cDate|date('Y-m-d') : '' }}</td>
+                <td>{{ cmd.cTotalPrice }}</td>
+                <td>{{ cmd.payee ? 'Yes' : 'No' }}</td>
+                <td>{{ cmd.retrait ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_cmd_show', {'id': cmd.id}) }}">show</a>
+                    <a href="{{ path('app_cmd_edit', {'id': cmd.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cmd_new') }}">Create new</a>
+{% endblock %}
